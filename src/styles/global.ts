@@ -9,7 +9,8 @@ export const GlobalStyle = createGlobalStyle`
 
     :focus {
         outline: 0;
-        box-shadow: 0 0 0 2px ${(props) => props.theme['purple-500']}
+        border-radius: 6px;
+        box-shadow: 0 0 0 2px ${(props) => props.theme['purple-500']};
     }
 
     body {

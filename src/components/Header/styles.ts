@@ -21,6 +21,8 @@ export const HeaderContainer = styled.header`
   }
 
   nav div {
+    align-items: center;
+    border-radius: 6px;
     display: flex;
     height: 2.375rem;
     justify-content: center;
