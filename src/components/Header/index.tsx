@@ -11,14 +11,14 @@ export function Header() {
       </NavLink>
       <nav>
         <NavLink to="/" title="location">
-          <div className='map'>
-            <MapPin size={22} weight='fill' className='map-icon' />
+          <div className="map">
+            <MapPin size={22} weight="fill" className="map-icon" />
             <p>Cidade/UF</p>
           </div>
         </NavLink>
         <NavLink to="/" title="cart">
-          <div className='cart'>
-            <ShoppingCart size={22} weight='fill' className='cart-icon' />
+          <div className="cart">
+            <ShoppingCart size={22} weight="fill" className="cart-icon" />
           </div>
         </NavLink>
       </nav >

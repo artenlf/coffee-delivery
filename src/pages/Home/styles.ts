@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const IntroContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 5.75rem 10rem;
 
   .title__container {
     width: 36.75rem;
