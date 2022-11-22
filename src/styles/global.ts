@@ -25,4 +25,8 @@ export const GlobalStyle = createGlobalStyle`
         font-size: 1rem;
         font-weight: 400;
     }
+
+    main {
+        padding: 5.75rem 10rem;
+    }
 `;
