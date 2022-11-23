@@ -6,9 +6,8 @@ export const CardContainer = styled.div`
   border-radius: 6px 36px;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.5rem;
   height: 19.375rem;
-  margin-top: 3.75rem;
   text-align: center;
   width: 16rem;
 
@@ -20,12 +19,18 @@ export const CardContainer = styled.div`
   img {
     height: 7.5rem;
     width: 7.5rem;
-    margin: -3.75rem auto 0 auto;
+    margin: -1.25rem auto 0.25rem auto;
   }
 
   .tag__container {
+    display: inline-flex;
+    gap: 0.25rem;
+  }
+
+  .tag__background {
     background: ${(props) => props.theme['yellow-100']};
     border-radius: 100px;
+    margin-bottom: 0.5rem;
     padding: 0.125rem 0.5rem;
   }
 
@@ -37,6 +42,7 @@ export const CardContainer = styled.div`
   }
 
   h2 {
+    color: ${(props) => props.theme['gray-800']};
     font-family: 'Baloo 2', cursive;
     font-weight: 700;
     font-size: 1.25rem;
@@ -45,6 +51,7 @@ export const CardContainer = styled.div`
   .description {
     color: ${(props) => props.theme['gray-600']};
     font-size: 0.875rem;
+    margin-bottom: 1.5rem;
     padding: 0 1.25rem;
   }
 
@@ -52,7 +59,6 @@ export const CardContainer = styled.div`
     align-items: center;
     display: flex;
     gap: 0.5rem;
-    margin-top: 1rem;
 
     p {
       font-size: 0.875rem;
@@ -82,6 +88,7 @@ export const CardContainer = styled.div`
       }
 
       span {
+        color: ${(props) => props.theme['gray-900']};
         align-items: flex-end;
         display: flex;
         justify-content: flex-end;

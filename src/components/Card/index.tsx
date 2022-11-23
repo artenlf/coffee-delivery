@@ -6,8 +6,10 @@ export function Card() {
   return (
     <CardContainer>
       <img src={Expresso} alt="" />
-      <div className="tag__container">
-        <span className="tag">Tradicional</span>
+      <div className='tag__container'>
+        <div className="tag__background">
+          <span className="tag">Tradicional</span>
+        </div>
       </div>
       <h2>Expresso Tradicional</h2>
       <p className="description">O tradicional café feito com água quente e grãos moídos</p>
