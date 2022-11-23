@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const IntroContainer = styled.div`
+export const IntroContainer = styled.section`
   display: flex;
   justify-content: space-between;
 
@@ -67,5 +67,20 @@ export const IntroItemsContainer = styled.div`
 
   .coffee__container {
     background: ${(props) => props.theme['purple-500']};
+  }
+`;
+
+export const ProductsContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+  gap: 2.5rem;
+
+  .title {
+    color: ${(props) => props.theme['gray-800']};
+    font-family: 'Baloo 2', cursive;
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 0.875rem;
   }
 `;

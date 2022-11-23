@@ -1,6 +1,7 @@
 import { Coffee, Package, ShoppingCart, Timer } from "phosphor-react";
 import { Card } from "../../components/Card";
-import { IntroContainer, IntroItemsContainer, IntroSubTitle, IntroTitle } from "./styles";
+
+import { IntroContainer, IntroItemsContainer, IntroSubTitle, IntroTitle, ProductsContainer } from "./styles";
 
 import IntroImage from "/intro-picture.png";
 
@@ -43,7 +44,10 @@ export function Home() {
         </div>
         <img src={IntroImage} alt="" />
       </IntroContainer>
-      <Card />
+      <ProductsContainer>
+        <h2 className="title">Nossos cafés</h2>
+        <Card />
+      </ProductsContainer>
     </main>
   )
 }
