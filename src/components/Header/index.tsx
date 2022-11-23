@@ -10,13 +10,13 @@ export function Header() {
         <img src={logo} alt="" />
       </NavLink>
       <nav>
-        <NavLink to="/" title="location">
+        <NavLink to="/checkout" title="location">
           <div className="map">
             <MapPin size={22} weight="fill" className="map-icon" />
             <p>Cidade/UF</p>
           </div>
         </NavLink>
-        <NavLink to="/" title="cart">
+        <NavLink to="/checkout" title="cart">
           <div className="cart">
             <ShoppingCart size={22} weight="fill" className="cart-icon" />
           </div>
