@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 
+import { CardContainer } from '../../components/Card/styles';
+
 export const InfoContainer = styled.main`
+  display: flex;
+  gap: 2rem;
+
   h2 {
     font-family: 'Baloo 2', cursive;
     font-size: 1.125rem;
@@ -101,4 +106,9 @@ export const PaymentMethodSelect = styled.button`
   .cash-icon {
     color: ${(props) => props.theme['purple-500']};
   }
+`;
+
+export const CartSummaryContainer = styled(CardContainer)`
+  height: 31.125rem;
+  width: 28rem;
 `;

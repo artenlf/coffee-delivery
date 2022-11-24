@@ -11,11 +11,6 @@ export const CardContainer = styled.div`
   text-align: center;
   width: 16rem;
 
-  & .big {
-    height: 31.125rem;
-    width: 28rem;
-  }
-
   img {
     height: 7.5rem;
     width: 7.5rem;
