@@ -9,12 +9,12 @@ export function SelectedProduct() {
     <SelectedProductContainer>
       <div className='product__wrapper'>
         <img src={Expresso} alt="" />
-        <div>
+        <div className="controls__wrapper">
           <h3>Expresso Tradicional</h3>
-          <div className="controls__wrapper">
+          <div className="buttons__wrapper">
             <div className="controls">
               <button>
-                <Minus size={14} weight="fill" />
+                <Minus size={14} weight="fill" className="minus-icon" />
               </button>
 
               <span>
@@ -22,13 +22,13 @@ export function SelectedProduct() {
               </span>
 
               <button>
-                <Plus size={14} weight="fill" />
+                <Plus size={14} weight="fill" className="plus-icon" />
               </button>
             </div>
 
             <div className="controls">
               <button>
-                <Trash size={14} className="trash-icon" />
+                <Trash size={16} className="trash-icon" />
                 Remover
               </button>
             </div>

@@ -21,14 +21,14 @@ export function Card() {
         </p>
         <div className="controls">
           <button>
-            <Minus size={14} weight="fill" />
+            <Minus size={14} weight="fill" className="minus-icon" />
           </button>
           <span>
             1
           </span>
 
           <button>
-            <Plus size={14} weight="fill" />
+            <Plus size={14} weight="fill" className="plus-icon" />
           </button>
         </div>
         <div className="cart">

@@ -68,18 +68,19 @@ export const CardContainer = styled.div`
     }
 
     .controls {
+      align-items: center;
       border-radius: 6px;
       background: ${(props) => props.theme['gray-400']};
       display: flex;
       gap: 0.25rem;
-      padding: 0.5rem;
 
       button {
         align-items: center;
+        border-radius: 6px;
         background: ${(props) => props.theme['gray-400']};
         border: none;
-        color: ${(props) => props.theme['purple-500']};
         display: flex;
+        padding: 0.5rem;
       }
 
       span {
@@ -87,6 +88,12 @@ export const CardContainer = styled.div`
         align-items: flex-end;
         display: flex;
         justify-content: flex-end;
+      }
+
+      .minus-icon,
+      .plus-icon {
+        color: ${(props) => props.theme['purple-500']};
+        margin-bottom: 0.25rem;
       }
     }
 

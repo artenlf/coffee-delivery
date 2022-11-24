@@ -8,6 +8,7 @@ export const SelectedProductContainer = styled.div`
   .product__wrapper {
     align-items: flex-start;
     display: flex;
+    gap: 1.25rem;
 
     img {
       height: 4rem;
@@ -23,34 +24,45 @@ export const SelectedProductContainer = styled.div`
   }
 
   .controls__wrapper {
-    display: inline-flex;
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .buttons__wrapper {
+    display: flex;
     gap: 0.5rem;
-    margin: auto;
   }
 
   .controls {
+    align-items: center;
     border-radius: 6px;
     background: ${(props) => props.theme['gray-400']};
     display: flex;
     flex-direction: row;
     gap: 0.25rem;
-    padding: 0.5rem;
 
     button {
       align-items: center;
+      border-radius: 6px;
       background: ${(props) => props.theme['gray-400']};
       border: none;
-      /* color: ${(props) => props.theme['purple-500']}; */
       display: flex;
+      gap: 0.25rem;
+      padding: 0.5rem;
+      text-transform: uppercase;
+    }
 
-      .trash-icon {
-        color: ${(props) => props.theme['purple-500']};
-      }
+    .minus-icon,
+    .plus-icon,
+    .trash-icon {
+      color: ${(props) => props.theme['purple-500']};
+      margin-bottom: 0.25rem;
     }
 
     span {
-      color: ${(props) => props.theme['gray-900']};
       align-items: flex-end;
+      color: ${(props) => props.theme['gray-900']};
       display: flex;
       justify-content: flex-end;
     }
