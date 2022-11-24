@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 
 export const SelectedProductContainer = styled.div`
+  border-bottom: 1px solid ${(props) => props.theme['gray-300']};
   display: flex;
-  flex-direction: row;
-  padding: 3rem 2.75rem;
+  padding: 3rem 0;
+  justify-content: space-between;
+  width: calc(100% - 2.75rem);
 
   .product__wrapper {
     align-items: flex-start;
@@ -27,6 +29,7 @@ export const SelectedProductContainer = styled.div`
     align-items: flex-start;
     display: flex;
     flex-direction: column;
+    gap: 0.5rem;
   }
 
   .buttons__wrapper {
@@ -48,7 +51,9 @@ export const SelectedProductContainer = styled.div`
       background: ${(props) => props.theme['gray-400']};
       border: none;
       display: flex;
+      font-size: 0.75rem;
       gap: 0.25rem;
+      line-height: 160%;
       padding: 0.5rem;
       text-transform: uppercase;
     }
@@ -66,5 +71,9 @@ export const SelectedProductContainer = styled.div`
       display: flex;
       justify-content: flex-end;
     }
+  }
+
+  .price {
+    font-weight: 700;
   }
 `;
