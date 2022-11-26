@@ -1,6 +1,6 @@
 import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money } from "phosphor-react";
 import { SelectedProduct } from "../../components/SelectedProduct";
-import { CartSummaryContainer, FormContainer, InfoContainer, InputContainer, PaymentContainer, PaymentMethodSelect } from "./styles";
+import { CartSummaryContainer, FormContainer, InfoContainer, InputContainer, PaymentContainer, PaymentMethodSelect, SubmitButton } from "./styles";
 
 export function Checkout() {
   return (
@@ -57,6 +57,26 @@ export function Checkout() {
         <h2>Complete o seu pedido</h2>
         <CartSummaryContainer>
           <SelectedProduct />
+          <SelectedProduct />
+
+
+          <div className="summary">
+            <div className="summary__line">
+              <p>Total de itens</p>
+              <p>R$ 29,70</p>
+            </div>
+            <div className="summary__line">
+              <p>Entrega</p>
+              <p>R$ 3,50</p>
+            </div>
+            <div className="summary__line">
+              <span>Total</span>
+              <span>R$ 33,20</span>
+            </div>
+          </div>
+          <SubmitButton>
+            Confirmar pedido
+          </SubmitButton>
 
         </CartSummaryContainer>
 

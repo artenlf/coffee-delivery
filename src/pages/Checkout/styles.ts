@@ -110,5 +110,47 @@ export const PaymentMethodSelect = styled.button`
 
 export const CartSummaryContainer = styled(CardContainer)`
   height: 31.125rem;
+  padding: 2.5rem;
   width: 28rem;
+
+  .summary {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    width: 100%;
+
+    .summary__line {
+      display: flex;
+      justify-content: space-between;
+
+      span {
+        font-size: 1.25rem;
+        font-weight: 700;
+      }
+    }
+  }
+`;
+
+export const SubmitButton = styled.button`
+  align-items: center;
+  background: ${(props) => props.theme['yellow-600']};
+  border: none;
+  border-radius: 6px;
+  color: ${(props) => props.theme['white']};
+  display: flex;
+  flex-direction: row;
+  font-size: 0.875rem;
+  font-weight: 700;
+  gap: 0.25rem;
+  justify-content: center;
+  line-height: 160%;
+  margin-top: 1.5rem;
+  padding: 0.75rem 0.5rem;
+  text-transform: uppercase;
+  width: 100%;
+
+  :hover {
+    background: ${(props) => props.theme['yellow-700']};
+  }
 `;

@@ -3,14 +3,15 @@ import styled from 'styled-components';
 export const SelectedProductContainer = styled.div`
   border-bottom: 1px solid ${(props) => props.theme['gray-300']};
   display: flex;
-  padding: 3rem 0;
   justify-content: space-between;
-  width: calc(100% - 2.75rem);
+  margin-bottom: 1.25rem;
+  width: 100%;
 
   .product__wrapper {
     align-items: flex-start;
     display: flex;
     gap: 1.25rem;
+    margin-bottom: 1.25rem;
 
     img {
       height: 4rem;
