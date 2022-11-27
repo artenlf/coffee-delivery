@@ -67,36 +67,6 @@ export const CardContainer = styled.div`
       margin-left: 0.25rem;
     }
 
-    .controls {
-      align-items: center;
-      border-radius: 6px;
-      background: ${(props) => props.theme['gray-400']};
-      display: flex;
-      gap: 0.25rem;
-
-      button {
-        align-items: center;
-        border-radius: 6px;
-        background: ${(props) => props.theme['gray-400']};
-        border: none;
-        display: flex;
-        padding: 0.5rem;
-      }
-
-      span {
-        color: ${(props) => props.theme['gray-900']};
-        align-items: flex-end;
-        display: flex;
-        justify-content: flex-end;
-      }
-
-      .minus-icon,
-      .plus-icon {
-        color: ${(props) => props.theme['purple-500']};
-        margin-bottom: 0.25rem;
-      }
-    }
-
     .cart {
       align-items: center;
       background: ${(props) => props.theme['purple-700']};

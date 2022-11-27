@@ -1,5 +1,6 @@
-import { Minus, Plus, ShoppingCartSimple } from 'phosphor-react';
+import { ShoppingCartSimple } from 'phosphor-react';
 import Expresso from '../../../public/assets/coffee/expresso.png';
+import { Controls } from '../Controls';
 import { CardContainer } from "./styles";
 
 export function Card() {
@@ -19,18 +20,7 @@ export function Card() {
             9,90
           </span>
         </p>
-        <div className="controls">
-          <button>
-            <Minus size={14} weight="fill" className="minus-icon" />
-          </button>
-          <span>
-            1
-          </span>
-
-          <button>
-            <Plus size={14} weight="fill" className="plus-icon" />
-          </button>
-        </div>
+        <Controls />
         <div className="cart">
           <ShoppingCartSimple size={22} weight="fill" />
         </div>

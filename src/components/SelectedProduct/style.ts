@@ -59,8 +59,6 @@ export const SelectedProductContainer = styled.div`
       text-transform: uppercase;
     }
 
-    .minus-icon,
-    .plus-icon,
     .trash-icon {
       color: ${(props) => props.theme['purple-500']};
       margin-bottom: 0.25rem;

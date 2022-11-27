@@ -1,5 +1,6 @@
-import { Minus, Plus, Trash } from 'phosphor-react';
+import { Trash } from 'phosphor-react';
 import Expresso from '../../../public/assets/coffee/expresso.png';
+import { Controls } from '../Controls/index';
 import { SelectedProductContainer } from './style';
 
 
@@ -12,19 +13,7 @@ export function SelectedProduct() {
         <div className="controls__wrapper">
           <h3>Expresso Tradicional</h3>
           <div className="buttons__wrapper">
-            <div className="controls">
-              <button>
-                <Minus size={14} weight="fill" className="minus-icon" />
-              </button>
-
-              <span>
-                1
-              </span>
-
-              <button>
-                <Plus size={14} weight="fill" className="plus-icon" />
-              </button>
-            </div>
+            <Controls />
 
             <div className="controls">
               <button>
