@@ -34,7 +34,7 @@ export const IntroItemsContainer = styled.div`
   gap: 1.25rem 0;
   grid-template-columns: repeat(2, 1fr);
 
-  p {
+  span {
     align-items: center;
     display: flex;
   }
@@ -75,6 +75,12 @@ export const ProductsContainer = styled.section`
   flex-direction: column;
   margin-top: 2rem;
   gap: 2.5rem;
+
+  .products__grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem 2rem;
+  }
 
   .title {
     color: ${(props) => props.theme['gray-800']};
