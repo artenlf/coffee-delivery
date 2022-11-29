@@ -1,23 +1,40 @@
 import { ShoppingCartSimple } from 'phosphor-react';
-import Expresso from '../../../public/assets/coffee/expresso.png';
 import { Controls } from '../Controls';
 import { CardContainer } from "./styles";
 
-export function Card() {
+
+interface ProductProps {
+  id: number;
+  picture: string;
+  label: string[];
+  name: string;
+  description: string;
+  price: number;
+}
+
+
+export function Card({ id, picture, label, name, description, price }: ProductProps) {
+
+
   return (
     <CardContainer>
-      <img src={Expresso} alt="" />
+
+      <img src={picture} alt="" />
+
       <div className='tag__container'>
-        <div className="tag__background">
-          <span className="tag">Tradicional</span>
-        </div>
+        {label.map((label) => (
+          <div className="tag__background">
+            <span className="tag">{label}</span>
+          </div>
+        ))}
       </div>
-      <h2>Expresso Tradicional</h2>
-      <p className="description">O tradicional café feito com água quente e grãos moídos</p>
+
+      <h2 key={id}>{name}</h2>
+      <p className="description">{description}</p>
       <div className="shop__container">
         <p>R$
           <span className="price">
-            9,90
+            {price}
           </span>
         </p>
         <Controls />
@@ -26,7 +43,6 @@ export function Card() {
         </div>
       </div>
 
-
-    </CardContainer>
+    </CardContainer >
   )
 }
