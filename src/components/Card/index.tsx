@@ -34,13 +34,13 @@ export function Card({ id, picture, label, name, description, price }: ProductPr
       <div className="shop__container">
         <p>R$
           <span className="price">
-            {price}
+            {(price).toFixed(2).replace(".", ",")}
           </span>
         </p>
         <Controls />
-        <div className="cart">
+        <button className="cart">
           <ShoppingCartSimple size={22} weight="fill" />
-        </div>
+        </button>
       </div>
 
     </CardContainer >

@@ -70,10 +70,15 @@ export const CardContainer = styled.div`
     .cart {
       align-items: center;
       background: ${(props) => props.theme['purple-700']};
+      border: none;
       border-radius: 6px;
       color: ${(props) => props.theme['bg-color']};
       display: flex;
       padding: 0.5rem;
+
+      :hover {
+        background: ${(props) => props.theme['purple-500']};
+      }
     }
   }
 `;
