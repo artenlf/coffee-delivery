@@ -3,8 +3,11 @@ import styled from 'styled-components';
 import { CardContainer } from '../../components/Card/styles';
 
 export const InfoContainer = styled.main`
-  display: flex;
-  gap: 2rem;
+  form {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    column-gap: 2rem;
+  }
 
   h2 {
     font-family: 'Baloo 2', cursive;
@@ -14,7 +17,7 @@ export const InfoContainer = styled.main`
   }
 `;
 
-export const FormContainer = styled.form`
+export const FieldSetContainer = styled.div`
   background: ${(props) => props.theme['gray-100']};
   border-radius: 6px;
   height: 23.25rem;
@@ -75,7 +78,7 @@ export const InputContainer = styled.input<InputProps>`
   }
 `;
 
-export const PaymentContainer = styled(FormContainer)`
+export const PaymentContainer = styled(FieldSetContainer)`
   height: 13rem;
 
   .dollar-icon {
