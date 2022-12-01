@@ -16,6 +16,7 @@ interface ProductProps {
 export function Card({ id, picture, label, name, description, price }: ProductProps) {
 
 
+
   return (
     <CardContainer>
 
@@ -23,7 +24,7 @@ export function Card({ id, picture, label, name, description, price }: ProductPr
 
       <div className='tag__container'>
         {label.map((label) => (
-          <div className="tag__background">
+          <div className="tag__background" key={id + label}>
             <span className="tag">{label}</span>
           </div>
         ))}

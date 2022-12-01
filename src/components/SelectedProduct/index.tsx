@@ -5,9 +5,11 @@ import { SelectedProductContainer } from './style';
 
 
 
-export function SelectedProduct() {
+export function SelectedProduct(props: any) {
+  const { cartItems } = props;
   return (
-    <SelectedProductContainer>
+    < SelectedProductContainer >
+      {cartItems.length === 0 && <div>O seu carrinho está vázio</div>}
       <div className='product__wrapper'>
         <img src={Expresso} alt="" />
         <div className="controls__wrapper">

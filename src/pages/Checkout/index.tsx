@@ -1,8 +1,16 @@
 import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money } from "phosphor-react";
+import { useState } from "react";
 import { SelectedProduct } from "../../components/SelectedProduct";
 import { CartSummaryContainer, FormContainer, InfoContainer, InputContainer, PaymentContainer, PaymentMethodSelect, SubmitButton } from "./styles";
 
+export interface CartProps {
+  cartItems: string[];
+}
+
+
 export function Checkout() {
+  const [cartItems, setCartItems] = useState([]);
+
   return (
     <InfoContainer>
       <div>
@@ -56,8 +64,7 @@ export function Checkout() {
 
         <h2>Complete o seu pedido</h2>
         <CartSummaryContainer>
-          <SelectedProduct />
-          <SelectedProduct />
+          <SelectedProduct cartItems={cartItems} />
 
 
           <div className="summary">

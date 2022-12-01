@@ -9,6 +9,8 @@ import products from "../../db/products.json";
 
 
 export function Home() {
+
+
   return (
     <main>
       <IntroContainer>
@@ -52,7 +54,9 @@ export function Home() {
         <div className="products__grid">
           {
             products.map((product) => (
-              <Card id={product.id}
+              <Card
+                key={product.id}
+                id={product.id}
                 picture={product.picture}
                 label={product.label}
                 name={product.name}
