@@ -13,27 +13,34 @@ export interface CartProps {
 
 
 export function Checkout() {
-  const { register, handleSubmit, watch, formState } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    defaultValues: {
+      postalCode: "",
+      street: "",
+      number: "",
+      complement: "",
+      neighborhood: "",
+      city: "",
+      state: "",
+    }
+  });
 
 
   const [cartItems, setCartItems] = useState([]);
-
-  function onSubmit() {
-    // event.target.preventDefault()
-    console.log("submited")
-  }
 
   return (
 
     <InfoContainer>
 
-      <form>
+      <form onSubmit={handleSubmit((data) => {
+        console.log(data)
+      })}>
         <h2>Complete o seu pedido</h2>
         <h2>Cafés selecionados</h2>
         <div>
 
 
-          <FieldSetContainer onSubmit={handleSubmit(onSubmit)}>
+          <FieldSetContainer>
             <div className="title__container">
               <MapPinLine size={22} className="location-icon" />
               <div>
@@ -42,13 +49,58 @@ export function Checkout() {
               </div>
             </div>
             <fieldset>
-              <InputContainer inputSize="default" placeholder="CEP" required />
-              <InputContainer inputSize="full" placeholder="Rua" required />
-              <InputContainer inputSize="default" placeholder="Número" required />
-              <InputContainer inputSize="comp" placeholder="Complemento" />
-              <InputContainer inputSize="default" placeholder="Bairro" required />
-              <InputContainer inputSize="city" placeholder="Cidade" required />
-              <InputContainer inputSize="uf" placeholder="UF" required />
+              <InputContainer
+                {...register("postalCode",
+                  {
+                    required: "Este campo é obrigatório.",
+                    minLength: { value: 5, message: "CEP inválido!" },
+                    maxLength: 5
+                  })}
+                inputSize="default"
+                placeholder="CEP"
+              />
+              {/* <p>{errors.postalCode?.message}</p> */}
+              <InputContainer
+                {...register("street",
+                  { required: "Este campo é obrigatório." })}
+                inputSize="full"
+                placeholder="Rua"
+              />
+
+              <InputContainer
+                {...register("number",
+                  { required: "Este campo é obrigatório." })}
+                inputSize="default"
+                placeholder="Número"
+              />
+
+              <InputContainer
+                {...register("complement")}
+                inputSize="comp"
+                placeholder="Complemento"
+              />
+
+              <InputContainer
+                {...register("neighborhood",
+                  { required: "Este campo é obrigatório." })}
+                inputSize="default"
+                placeholder="Bairro"
+              />
+              <InputContainer {...register("city",
+                { required: "Este campo é obrigatório." })}
+                inputSize="city"
+                placeholder="Cidade" />
+
+              <InputContainer
+                {...register("state",
+                  {
+                    required: "Este campo é obrigatório.",
+                    minLength: 2
+                  })}
+                inputSize="uf"
+                placeholder="UF"
+              />
+
             </fieldset>
           </FieldSetContainer>
           <PaymentContainer>
