@@ -5,15 +5,35 @@ import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money } from "phosphor-re
 
 import { SelectedProduct } from "../../components/SelectedProduct";
 
-import { CartSummaryContainer, FieldSetContainer, InfoContainer, InputContainer, PaymentContainer, PaymentMethodSelect, SubmitButton } from "./styles";
+import {
+  CartSummaryContainer,
+  ErrorContainer,
+  FieldSetContainer,
+  InfoContainer,
+  InputContainer,
+  PaymentContainer,
+  PaymentMethodSelect,
+  SubmitButton
+} from "./styles";
 
 export interface CartProps {
   cartItems: string[];
 }
 
+interface IFormInput {
+  postalCode: string;
+  street: string;
+  number: string;
+  complement: string;
+  neighborhood: string;
+  city: string;
+  state: string;
+
+}
+
 
 export function Checkout() {
-  const { register, handleSubmit, formState: { errors } } = useForm({
+  const { register, handleSubmit, formState: { errors } } = useForm<IFormInput>({
     defaultValues: {
       postalCode: "",
       street: "",
@@ -29,6 +49,8 @@ export function Checkout() {
   const [cartItems, setCartItems] = useState([]);
 
   return (
+
+
 
     <InfoContainer>
 
@@ -49,30 +71,51 @@ export function Checkout() {
               </div>
             </div>
             <fieldset>
+
               <InputContainer
                 {...register("postalCode",
                   {
-                    required: "Este campo é obrigatório.",
-                    minLength: { value: 5, message: "CEP inválido!" },
-                    maxLength: 5
-                  })}
+                    //   required: "Este campo é obrigatório.",
+                    pattern:
+                    {
+                      value: /^[0-9]{5}[0-9]{3}$/,
+                      message: "CEP inválido!"
+                    },
+                  },
+                )}
                 inputSize="default"
                 placeholder="CEP"
+                required
+                minLength={8}
+                maxLength={8}
               />
-              {/* <p>{errors.postalCode?.message}</p> */}
+
+              <ErrorContainer>{errors.postalCode?.message}</ErrorContainer>
+
               <InputContainer
                 {...register("street",
-                  { required: "Este campo é obrigatório." })}
+                  // { required: "Este campo é obrigatório." }
+                )
+                }
                 inputSize="full"
                 placeholder="Rua"
+                required
               />
+
+              {/* <ErrorContainer>{errors.street?.message}</ErrorContainer> */}
 
               <InputContainer
                 {...register("number",
-                  { required: "Este campo é obrigatório." })}
+                  // { required: "Este campo é obrigatório." }
+                )
+                }
                 inputSize="default"
                 placeholder="Número"
+                required
               />
+
+              {/* <ErrorContainer>{errors.number?.message}</ErrorContainer> */}
+
 
               <InputContainer
                 {...register("complement")}
@@ -82,23 +125,35 @@ export function Checkout() {
 
               <InputContainer
                 {...register("neighborhood",
-                  { required: "Este campo é obrigatório." })}
+                  // { required: "Este campo é obrigatório." }
+                )
+                }
                 inputSize="default"
                 placeholder="Bairro"
+                required
               />
               <InputContainer {...register("city",
-                { required: "Este campo é obrigatório." })}
+                // { required: "Este campo é obrigatório." }
+              )
+              }
                 inputSize="city"
-                placeholder="Cidade" />
+                placeholder="Cidade"
+                required
+              />
 
               <InputContainer
                 {...register("state",
-                  {
-                    required: "Este campo é obrigatório.",
-                    minLength: 2
-                  })}
+                  // {
+                  //   required: "Este campo é obrigatório.",
+                  //   minLength: 2
+                  // }
+                )
+                }
                 inputSize="uf"
                 placeholder="UF"
+                required={true}
+                minLength={2}
+                maxLength={2}
               />
 
             </fieldset>

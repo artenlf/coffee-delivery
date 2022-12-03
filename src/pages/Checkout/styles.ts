@@ -72,10 +72,22 @@ export const InputContainer = styled.input<InputProps>`
   padding: 0.75rem;
   width: ${(props) => [INPUT_SIZE[props.inputSize]]};
 
+  ::-webkit-outer-spin-button,
+  ::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
   ::placeholder {
     color: ${(props) => props.theme['gray-600']};
     font-size: 0.875rem;
   }
+`;
+
+export const ErrorContainer = styled.p`
+  align-self: center;
+  color: red;
+  font-size: 0.75rem;
 `;
 
 export const PaymentContainer = styled(FieldSetContainer)`
