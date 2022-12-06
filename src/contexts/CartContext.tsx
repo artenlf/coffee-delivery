@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useContext, useState } from 'react';
 
-interface CartProviderProps {
+interface CartContextProviderProps {
   children: ReactNode;
 }
 
@@ -23,7 +23,7 @@ export function useCart() {
   return useContext(CartContext)
 }
 
-export function CartProvider({ children }: CartProviderProps) {
+export function CartContextProvider({ children }: CartContextProviderProps) {
 
   const [cartItems, setCartItems] = useState<CartItemProps[]>([])
 
