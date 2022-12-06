@@ -46,9 +46,23 @@ export const HeaderContainer = styled.header`
     background: ${(props) => props.theme['yellow-100']};
     color: white;
     width: 2.375rem;
+
+    .cart-icon {
+      color: ${(props) => props.theme['yellow-700']};
+      margin: auto;
+    }
   }
 
-  .cart-icon {
-    color: ${(props) => props.theme['yellow-700']};
+  .item__counter {
+    background: ${(props) => props.theme['yellow-700']};
+    border: none;
+    border-radius: 999px;
+    color: ${(props) => props.theme['gray-100']};
+    font-size: 0.75rem;
+    font-weight: 700;
+    height: 1.25rem;
+    margin-top: -2rem;
+    margin-left: -1.5rem;
+    width: 1.25rem;
   }
 `;
