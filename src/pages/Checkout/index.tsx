@@ -1,10 +1,8 @@
-import { useForm } from "react-hook-form";
-
 import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money, ShoppingCart } from "phosphor-react";
-
+import { useForm } from "react-hook-form";
 import { SelectedProduct } from "../../components/SelectedProduct";
-
 import { useCart } from "../../contexts/CartContext";
+import products from "../../db/products.json";
 import {
   CartSummaryContainer,
   ErrorContainer,
@@ -27,7 +25,6 @@ interface IFormInput {
 
 }
 
-
 export function Checkout() {
   const {
     cartItems
@@ -44,6 +41,13 @@ export function Checkout() {
       state: "",
     }
   });
+
+  const itemsTotalPrice = (cartItems.reduce((total, cartItem) => {
+    const item = products.find(item => item.id === cartItem.id)
+    return total + (item?.price || 0) * cartItem.quantity
+  }, 0));
+
+  const deliveryFees = 3.50;
 
   return (
 
@@ -193,29 +197,27 @@ export function Checkout() {
             :
 
             cartItems.map(item => (
-              <>
-                <SelectedProduct key={item.id} {...item} />
+              <SelectedProduct key={item.id} {...item} />
+            ))}
 
-                < div className="summary" >
-                  <div className="summary__line">
-                    <p>Total de itens</p>
-                    <p>{ }</p>
-                  </div>
-                  <div className="summary__line">
-                    <p>Entrega</p>
-                    <p>R$ 3,50</p>
-                  </div>
-                  <div className="summary__line">
-                    <span>Total</span>
-                    <span>R$ 33,20</span>
-                  </div>
-                </div>
-                <SubmitButton type="submit">
-                  Confirmar pedido
-                </SubmitButton>
-              </>
-            ))
-          }
+          <div className="summary">
+            <div className="summary__line">
+              <p>Total de itens</p>
+              <p>R$ {(itemsTotalPrice).toFixed(2).replace(".", ",")}</p>
+            </div>
+            <div className="summary__line">
+              <p>Entrega</p>
+              <p>R$ {(deliveryFees).toFixed(2).replace(".", ",")}</p>
+            </div>
+            <div className="summary__line">
+              <span>Total</span>
+              <span>R$ {(itemsTotalPrice + deliveryFees).toFixed(2).replace(".", ",")}</span>
+            </div>
+          </div>
+          <SubmitButton type="submit">
+            Confirmar pedido
+          </SubmitButton>
+
         </CartSummaryContainer>
 
       </form >
