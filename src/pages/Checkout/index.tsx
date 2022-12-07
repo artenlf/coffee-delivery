@@ -1,10 +1,10 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money } from "phosphor-react";
 
 import { SelectedProduct } from "../../components/SelectedProduct";
 
+import { useCart } from "../../contexts/CartContext";
 import {
   CartSummaryContainer,
   ErrorContainer,
@@ -15,10 +15,6 @@ import {
   PaymentMethodSelect,
   SubmitButton
 } from "./styles";
-
-export interface CartProps {
-  cartItems: string[];
-}
 
 interface IFormInput {
   postalCode: string;
@@ -33,6 +29,10 @@ interface IFormInput {
 
 
 export function Checkout() {
+  const {
+    cartItems
+  } = useCart()
+
   const { register, handleSubmit, formState: { errors } } = useForm<IFormInput>({
     defaultValues: {
       postalCode: "",
@@ -44,9 +44,6 @@ export function Checkout() {
       state: "",
     }
   });
-
-
-  const [cartItems, setCartItems] = useState([]);
 
   return (
 
@@ -187,10 +184,16 @@ export function Checkout() {
         </div>
 
         <CartSummaryContainer>
-          <SelectedProduct cartItems={cartItems} />
+          {cartItems.map(item => (
+            // {
+            //   cartItems.length < 1 ? <div> O seu carrinho está vázio. Adicione um café!</div> :
+            <SelectedProduct key={item.id} {...item} />
+            // }
+          ))}
 
 
-          <div className="summary">
+
+          < div className="summary" >
             <div className="summary__line">
               <p>Total de itens</p>
               <p>R$ 29,70</p>

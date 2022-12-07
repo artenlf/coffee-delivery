@@ -6,13 +6,15 @@ interface CartContextProviderProps {
 
 
 interface CartContextProps {
+  cartItems: CartItemProps[];
+  cartQuantity: number;
   itemQuantity: (id: number) => number;
   increaseQuantity: (id: number) => void;
   decreaseQuantity: (id: number) => void;
   removeItem: (id: number) => void;
 }
 
-interface CartItemProps {
+export interface CartItemProps {
   id: number;
   quantity: number;
 }
@@ -26,6 +28,8 @@ export function useCart() {
 export function CartContextProvider({ children }: CartContextProviderProps) {
 
   const [cartItems, setCartItems] = useState<CartItemProps[]>([])
+
+  const cartQuantity = cartItems.reduce((quantity, item) => item.quantity + quantity, 0)
 
   function itemQuantity(id: number) {
     return cartItems.find(item => item.id === id)?.quantity || 0
@@ -69,7 +73,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     })
   }
 
-  return <CartContext.Provider value={{ itemQuantity, increaseQuantity, decreaseQuantity, removeItem }}>
+  return <CartContext.Provider value={{ cartItems, cartQuantity, itemQuantity, increaseQuantity, decreaseQuantity, removeItem }}>
     {children}
   </CartContext.Provider>
 }

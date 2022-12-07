@@ -1,4 +1,5 @@
 import { ShoppingCartSimple } from 'phosphor-react';
+import { useCart } from '../../contexts/CartContext';
 import { Controls } from '../Controls';
 import { CardContainer } from "./styles";
 
@@ -15,6 +16,14 @@ interface ProductProps {
 
 export function Card({ id, picture, label, name, description, price }: ProductProps) {
 
+  const {
+    itemQuantity,
+    increaseQuantity,
+    decreaseQuantity,
+    removeItem
+  } = useCart()
+
+  const quantity = itemQuantity(id)
 
 
   return (
@@ -38,8 +47,8 @@ export function Card({ id, picture, label, name, description, price }: ProductPr
             {(price).toFixed(2).replace(".", ",")}
           </span>
         </p>
-        <Controls />
-        <button className="cart">
+        <Controls id={id} quantity={quantity} />
+        <button className="cart" onClick={() => increaseQuantity(id)}>
           <ShoppingCartSimple size={22} weight="fill" />
         </button>
       </div>
