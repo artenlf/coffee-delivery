@@ -145,6 +145,20 @@ export const CartSummaryContainer = styled(CardContainer)`
       }
     }
   }
+  .empty-cart {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.125rem;
+    font-weight: 700;
+    gap: 2rem;
+    margin: auto;
+
+    .cart-icon {
+      color: ${(props) => props.theme['yellow-700']};
+    }
+  }
 `;
 
 export const SubmitButton = styled.button`

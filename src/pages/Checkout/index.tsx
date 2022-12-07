@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 
-import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money } from "phosphor-react";
+import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money, ShoppingCart } from "phosphor-react";
 
 import { SelectedProduct } from "../../components/SelectedProduct";
 
@@ -184,33 +184,38 @@ export function Checkout() {
         </div>
 
         <CartSummaryContainer>
-          {cartItems.map(item => (
-            // {
-            //   cartItems.length < 1 ? <div> O seu carrinho está vázio. Adicione um café!</div> :
-            <SelectedProduct key={item.id} {...item} />
-            // }
-          ))}
-
-
-
-          < div className="summary" >
-            <div className="summary__line">
-              <p>Total de itens</p>
-              <p>R$ 29,70</p>
+          {cartItems.length < 1 ?
+            <div className="empty-cart">
+              <ShoppingCart size={60} weight="fill" className="cart-icon" />
+              O seu carrinho está vázio.<br /> Adicione um café!
             </div>
-            <div className="summary__line">
-              <p>Entrega</p>
-              <p>R$ 3,50</p>
-            </div>
-            <div className="summary__line">
-              <span>Total</span>
-              <span>R$ 33,20</span>
-            </div>
-          </div>
-          <SubmitButton type="submit">
-            Confirmar pedido
-          </SubmitButton>
 
+            :
+
+            cartItems.map(item => (
+              <>
+                <SelectedProduct key={item.id} {...item} />
+
+                < div className="summary" >
+                  <div className="summary__line">
+                    <p>Total de itens</p>
+                    <p>{ }</p>
+                  </div>
+                  <div className="summary__line">
+                    <p>Entrega</p>
+                    <p>R$ 3,50</p>
+                  </div>
+                  <div className="summary__line">
+                    <span>Total</span>
+                    <span>R$ 33,20</span>
+                  </div>
+                </div>
+                <SubmitButton type="submit">
+                  Confirmar pedido
+                </SubmitButton>
+              </>
+            ))
+          }
         </CartSummaryContainer>
 
       </form >
