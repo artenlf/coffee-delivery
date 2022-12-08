@@ -9,8 +9,6 @@ import { SelectedProductContainer } from './style';
 
 export function SelectedProduct({ id, quantity }: CartItemProps) {
   const {
-    cartItems,
-    itemQuantity,
     removeItem,
   } = useCart()
 

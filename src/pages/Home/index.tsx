@@ -1,5 +1,5 @@
 import { Coffee, Package, ShoppingCart, Timer } from "phosphor-react";
-import { Card } from "../../components/Card";
+import { ProductCard } from "../../components/ProductCard";
 
 import { IntroContainer, IntroItemsContainer, IntroSubTitle, IntroTitle, ProductsContainer } from "./styles";
 
@@ -54,7 +54,7 @@ export function Home() {
         <div className="products__grid">
           {
             products.map((product) => (
-              <Card
+              <ProductCard
                 key={product.id}
                 id={product.id}
                 picture={product.picture}

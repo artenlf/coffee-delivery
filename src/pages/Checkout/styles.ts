@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { CardContainer } from '../../components/Card/styles';
+import { CardContainer } from '../../components/ProductCard/styles';
 
 export const InfoContainer = styled.main`
   form {

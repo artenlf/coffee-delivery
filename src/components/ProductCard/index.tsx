@@ -14,13 +14,11 @@ interface ProductProps {
 }
 
 
-export function Card({ id, picture, label, name, description, price }: ProductProps) {
+export function ProductCard({ id, picture, label, name, description, price }: ProductProps) {
 
   const {
     itemQuantity,
     increaseQuantity,
-    decreaseQuantity,
-    removeItem
   } = useCart()
 
   const quantity = itemQuantity(id)

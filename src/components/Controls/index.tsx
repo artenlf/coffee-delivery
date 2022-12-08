@@ -11,17 +11,6 @@ export function Controls({ id }: CartItemProps) {
   } = useCart()
 
   const quantity = itemQuantity(id)
-  // const [counter, setCounter] = useState(1);
-
-  // function handleCounterDecrease() {
-  //   counter > 0 ? setCounter(counter - 1) : setCounter(counter);
-  // }
-
-  // function handleCounterIncrease() {
-  //   return setCounter(counter + 1);
-  // }
-
-  // useEffect(() => { }, [counter])
 
   return (
     <ControlsContainer>
