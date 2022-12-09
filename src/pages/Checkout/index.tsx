@@ -1,4 +1,6 @@
+import cep from 'cep-promise';
 import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money, ShoppingCart } from "phosphor-react";
+import { ChangeEvent } from 'react';
 import { useForm } from "react-hook-form";
 import { SelectedProduct } from "../../components/SelectedProduct";
 import { useCart } from "../../contexts/CartContext";
@@ -30,7 +32,7 @@ export function Checkout() {
     cartItems
   } = useCart()
 
-  const { register, handleSubmit, formState: { errors } } = useForm<IFormInput>({
+  const { register, handleSubmit, formState: { errors }, setValue } = useForm<IFormInput>({
     defaultValues: {
       postalCode: "",
       street: "",
@@ -48,6 +50,16 @@ export function Checkout() {
   }, 0));
 
   const deliveryFees = 3.50;
+
+  function postalCodeAutoCompleteAddress(event: ChangeEvent<HTMLInputElement>) {
+    const postalCode = event.target.value.replace(/\D/g, "");
+    cep(postalCode).then(data => {
+      setValue("street", data.street);
+      setValue("neighborhood", data.neighborhood);
+      setValue("city", data.city);
+      setValue("state", data.state);
+    }).catch()
+  }
 
   return (
 
@@ -89,6 +101,7 @@ export function Checkout() {
                 required
                 minLength={8}
                 maxLength={8}
+                onBlur={postalCodeAutoCompleteAddress}
               />
 
               <ErrorContainer>{errors.postalCode?.message}</ErrorContainer>
