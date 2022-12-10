@@ -19,6 +19,9 @@
 - React
 - Vite
 - Styled-Components
+- React-Hook-Form
+- Cep-Promise
+- Phosphor Icons
 
 ### Objectives
 
