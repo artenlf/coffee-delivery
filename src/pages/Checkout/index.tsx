@@ -10,10 +10,7 @@ import {
   ErrorContainer,
   FieldSetContainer,
   InfoContainer,
-  InputContainer,
-  PaymentContainer,
-  PaymentMethodSelect,
-  SubmitButton
+  InputContainer, PaymentContainer, PaymentMethodSelect, SubmitButton
 } from "./styles";
 
 interface IFormInput {
@@ -28,6 +25,7 @@ interface IFormInput {
 }
 
 export function Checkout() {
+
   const {
     cartItems
   } = useCart()
@@ -51,7 +49,25 @@ export function Checkout() {
 
   const deliveryFees = 3.50;
 
-  const [isActivePaymentMethod, setIsActivePaymentMethod] = useState(false);
+  const avaiblePaymentMethods = [
+    {
+      id: "credit",
+      icon: <CreditCard size={16} className="card-icon" />,
+      name: "Cartão de crédito",
+    },
+    {
+      id: "debit",
+      icon: <Bank size={16} className="bank-icon" />,
+      name: "Cartão de débito"
+    },
+    {
+      id: "cash",
+      icon: <Money size={16} className="cash-icon" />,
+      name: "Dinheiro"
+    }
+  ]
+
+  const [isActivePaymentMethod, setIsActivePaymentMethod] = useState<string | undefined>()
 
   function postalCodeAutoCompleteAddress(event: ChangeEvent<HTMLInputElement>) {
     const postalCode = event.target.value.replace(/\D/g, "");
@@ -61,10 +77,6 @@ export function Checkout() {
       setValue("city", data.city);
       setValue("state", data.state);
     }).catch()
-  }
-
-  function handleActivePaymentMethod() {
-    setIsActivePaymentMethod(current => !current)
   }
 
   return (
@@ -104,7 +116,7 @@ export function Checkout() {
                 )}
                 inputSize="default"
                 placeholder="CEP"
-                required
+
                 minLength={8}
                 maxLength={8}
                 onBlur={postalCodeAutoCompleteAddress}
@@ -119,7 +131,7 @@ export function Checkout() {
                 }
                 inputSize="full"
                 placeholder="Rua"
-                required
+
               />
 
               {/* <ErrorContainer>{errors.street?.message}</ErrorContainer> */}
@@ -131,7 +143,7 @@ export function Checkout() {
                 }
                 inputSize="default"
                 placeholder="Número"
-                required
+
               />
 
               {/* <ErrorContainer>{errors.number?.message}</ErrorContainer> */}
@@ -150,7 +162,7 @@ export function Checkout() {
                 }
                 inputSize="default"
                 placeholder="Bairro"
-                required
+
               />
               <InputContainer {...register("city",
                 // { required: "Este campo é obrigatório." }
@@ -158,7 +170,7 @@ export function Checkout() {
               }
                 inputSize="city"
                 placeholder="Cidade"
-                required
+
               />
 
               <InputContainer
@@ -171,13 +183,13 @@ export function Checkout() {
                 }
                 inputSize="uf"
                 placeholder="UF"
-                required={true}
+
                 minLength={2}
                 maxLength={2}
               />
 
             </fieldset>
-          </FieldSetContainer>
+          </FieldSetContainer >
           <PaymentContainer>
             <div className="title__container">
               <CurrencyDollar size={22} weight="fill" className="dollar-icon" />
@@ -187,32 +199,17 @@ export function Checkout() {
               </div>
             </div>
             <div className="method__wrapper">
-              <PaymentMethodSelect
-
-                className={isActivePaymentMethod ? "activePaymentMethod" : ""}
-                onClick={handleActivePaymentMethod}
-
-              >
-                <CreditCard size={16} className="card-icon" />
-                Cartão de crédito
-              </PaymentMethodSelect>
-
-              <PaymentMethodSelect
-                className={isActivePaymentMethod ? "activePaymentMethod" : ""}
-                onClick={handleActivePaymentMethod}
-              >
-                <Bank size={16} className="bank-icon" />
-                Cartão de débito
-              </PaymentMethodSelect>
-
-              <PaymentMethodSelect
-
-                className={isActivePaymentMethod ? "activePaymentMethod" : ""}
-                onClick={handleActivePaymentMethod}
-              >
-                <Money size={16} className="cash-icon" />
-                Dinheiro
-              </PaymentMethodSelect>
+              {
+                avaiblePaymentMethods.map((paymentMethod) => (
+                  <PaymentMethodSelect type="button"
+                    key={paymentMethod.id}
+                    isActive={isActivePaymentMethod === paymentMethod.id}
+                    onClick={() => setIsActivePaymentMethod(paymentMethod.id)}
+                  >
+                    {paymentMethod.icon}
+                    {paymentMethod.name}
+                  </PaymentMethodSelect>
+                ))}
 
             </div>
           </PaymentContainer>

@@ -102,28 +102,42 @@ export const PaymentContainer = styled(FieldSetContainer)`
   }
 `;
 
-export const PaymentMethodSelect = styled.button`
-  background: ${(props) => props.theme['gray-300']};
-  border: none;
+export type IPaymentMethodSelect = {
+  isActive: boolean;
+};
+
+export const PaymentMethodSelect = styled.button<IPaymentMethodSelect>`
+  align-items: center;
+  background: ${(props) => (props) =>
+    props.isActive ? props.theme['purple-100'] : props.theme['gray-300']};
+  border: ${(props) => (props) =>
+    props.isActive ? `2px solid ${props.theme['purple-500']}` : 'none'};
   border-radius: 6px;
   color: ${(props) => props.theme['gray-700']};
+  cursor: pointer;
   display: flex;
   gap: 0.75rem;
   font-size: 0.75rem;
   height: 3rem;
-  padding: 1rem;
+  justify-content: center;
   text-transform: uppercase;
+  transition: 0.3s;
   width: 11rem;
 
-  .activePaymentMethod {
-    background: ${(props) => props.theme['purple-100']};
-    border: 2px solid ${(props) => props.theme['purple-500']};
+  :focus {
+    border: none;
   }
 
   .card-icon,
   .bank-icon,
   .cash-icon {
     color: ${(props) => props.theme['purple-500']};
+    margin-bottom: 0.25rem;
+  }
+
+  & .activePaymentMethod {
+    background: ${(props) => props.theme['purple-100']};
+    border: 2px solid ${(props) => props.theme['purple-500']};
   }
 `;
 
