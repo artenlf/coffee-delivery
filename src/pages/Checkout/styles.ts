@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-
 import { CardContainer } from '../../components/ProductCard/styles';
 
 export const InfoContainer = styled.main`
@@ -115,6 +114,11 @@ export const PaymentMethodSelect = styled.button`
   padding: 1rem;
   text-transform: uppercase;
   width: 11rem;
+
+  .activePaymentMethod {
+    background: ${(props) => props.theme['purple-100']};
+    border: 2px solid ${(props) => props.theme['purple-500']};
+  }
 
   .card-icon,
   .bank-icon,

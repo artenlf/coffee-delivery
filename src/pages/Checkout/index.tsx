@@ -1,6 +1,6 @@
 import cep from 'cep-promise';
 import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money, ShoppingCart } from "phosphor-react";
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { SelectedProduct } from "../../components/SelectedProduct";
 import { useCart } from "../../contexts/CartContext";
@@ -51,6 +51,8 @@ export function Checkout() {
 
   const deliveryFees = 3.50;
 
+  const [isActivePaymentMethod, setIsActivePaymentMethod] = useState(false);
+
   function postalCodeAutoCompleteAddress(event: ChangeEvent<HTMLInputElement>) {
     const postalCode = event.target.value.replace(/\D/g, "");
     cep(postalCode).then(data => {
@@ -59,6 +61,10 @@ export function Checkout() {
       setValue("city", data.city);
       setValue("state", data.state);
     }).catch()
+  }
+
+  function handleActivePaymentMethod() {
+    setIsActivePaymentMethod(current => !current)
   }
 
   return (
@@ -181,17 +187,29 @@ export function Checkout() {
               </div>
             </div>
             <div className="method__wrapper">
-              <PaymentMethodSelect type="button">
+              <PaymentMethodSelect
+
+                className={isActivePaymentMethod ? "activePaymentMethod" : ""}
+                onClick={handleActivePaymentMethod}
+
+              >
                 <CreditCard size={16} className="card-icon" />
                 Cartão de crédito
               </PaymentMethodSelect>
 
-              <PaymentMethodSelect type="button">
+              <PaymentMethodSelect
+                className={isActivePaymentMethod ? "activePaymentMethod" : ""}
+                onClick={handleActivePaymentMethod}
+              >
                 <Bank size={16} className="bank-icon" />
                 Cartão de débito
               </PaymentMethodSelect>
 
-              <PaymentMethodSelect type="button">
+              <PaymentMethodSelect
+
+                className={isActivePaymentMethod ? "activePaymentMethod" : ""}
+                onClick={handleActivePaymentMethod}
+              >
                 <Money size={16} className="cash-icon" />
                 Dinheiro
               </PaymentMethodSelect>
