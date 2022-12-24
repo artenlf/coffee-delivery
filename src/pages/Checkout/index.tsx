@@ -1,11 +1,10 @@
 import cep from "cep-promise";
-import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money, ShoppingCart } from "phosphor-react";
-import { ChangeEvent, useState } from 'react';
+import { CurrencyDollar, MapPinLine, ShoppingCart } from "phosphor-react";
+import { ChangeEvent } from 'react';
 import { useForm } from "react-hook-form";
 import { SelectedProduct } from "../../components/SelectedProduct";
 import { addressDefaultValues, AddressFormProps, useAddress } from '../../contexts/AddressContext';
 import { useCart } from "../../contexts/CartContext";
-import products from "../../db/products.json";
 import {
   CartSummaryContainer,
   ErrorContainer,
@@ -26,35 +25,15 @@ export function Checkout() {
       })
 
   const {
-    cartItems
+    cartItems,
+    itemsTotalPrice,
+    deliveryFees,
+    avaiblePaymentMethods,
+    isActivePaymentMethod,
+    setIsActivePaymentMethod
   } = useCart()
 
-  const itemsTotalPrice = (cartItems.reduce((total, cartItem) => {
-    const item = products.find(item => item.id === cartItem.id)
-    return total + (item?.price || 0) * cartItem.quantity
-  }, 0));
 
-  const deliveryFees = 3.50;
-
-  const avaiblePaymentMethods = [
-    {
-      id: "credit",
-      icon: <CreditCard size={16} className="card-icon" />,
-      name: "Cartão de crédito",
-    },
-    {
-      id: "debit",
-      icon: <Bank size={16} className="bank-icon" />,
-      name: "Cartão de débito"
-    },
-    {
-      id: "cash",
-      icon: <Money size={16} className="cash-icon" />,
-      name: "Dinheiro"
-    }
-  ]
-
-  const [isActivePaymentMethod, setIsActivePaymentMethod] = useState<string | undefined>()
 
   const { onSubmit } = useAddress();
 
@@ -186,9 +165,9 @@ export function Checkout() {
               {
                 avaiblePaymentMethods.map((paymentMethod) => (
                   <PaymentMethodSelect type="button"
-                    key={paymentMethod.id}
-                    isActive={isActivePaymentMethod === paymentMethod.id}
-                    onClick={() => setIsActivePaymentMethod(paymentMethod.id)}
+                    key={paymentMethod.method}
+                    isActive={isActivePaymentMethod === paymentMethod.method}
+                    onClick={() => setIsActivePaymentMethod(paymentMethod.method)}
                   >
                     {paymentMethod.icon}
                     {paymentMethod.name}

@@ -1,18 +1,32 @@
-import { createContext, ReactNode, useContext } from 'react';
+import { Bank, CreditCard, Money } from 'phosphor-react';
+import { createContext, ReactNode, useContext, useState } from 'react';
+import products from "../db/products.json";
 import { useLocalStorage } from '../hooks/useLocalStorage';
+
 
 interface CartContextProviderProps {
   children: ReactNode;
 }
 
+interface avaiblePaymentMethodsProps {
+  method: string;
+  icon: any;
+  name: string;
+}
 
 interface CartContextProps {
   cartItems: CartItemProps[];
   cartQuantity: number;
+  itemsTotalPrice: number;
+  deliveryFees: number;
+  avaiblePaymentMethods: avaiblePaymentMethodsProps[];
+  isActivePaymentMethod: string | undefined;
   itemQuantity: (id: number) => number;
   increaseQuantity: (id: number) => void;
   decreaseQuantity: (id: number) => void;
   removeItem: (id: number) => void;
+  setIsActivePaymentMethod: React.Dispatch<React.SetStateAction<string | undefined>>;
+
 }
 
 export interface CartItemProps {
@@ -31,6 +45,33 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
   const [cartItems, setCartItems] = useLocalStorage<CartItemProps[]>("shopping-cart", [])
 
   const cartQuantity = cartItems.reduce((quantity, item) => item.quantity + quantity, 0)
+
+  const itemsTotalPrice = (cartItems.reduce((total, cartItem) => {
+    const item = products.find(item => item.id === cartItem.id)
+    return total + (item?.price || 0) * cartItem.quantity
+  }, 0));
+
+  const deliveryFees = 3.50;
+
+  const avaiblePaymentMethods = [
+    {
+      method: "credit",
+      icon: <CreditCard size={16} className="card-icon" />,
+      name: "Cartão de crédito",
+    },
+    {
+      method: "debit",
+      icon: <Bank size={16} className="bank-icon" />,
+      name: "Cartão de débito"
+    },
+    {
+      method: "cash",
+      icon: <Money size={16} className="cash-icon" />,
+      name: "Dinheiro"
+    }
+  ]
+
+  const [isActivePaymentMethod, setIsActivePaymentMethod] = useState<string | undefined>()
 
   function itemQuantity(id: number) {
     return cartItems.find(item => item.id === id)?.quantity || 0
@@ -74,7 +115,19 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     })
   }
 
-  return <CartContext.Provider value={{ cartItems, cartQuantity, itemQuantity, increaseQuantity, decreaseQuantity, removeItem }}>
+  return <CartContext.Provider value={{
+    cartItems,
+    itemsTotalPrice,
+    deliveryFees,
+    avaiblePaymentMethods,
+    cartQuantity,
+    itemQuantity,
+    increaseQuantity,
+    decreaseQuantity,
+    removeItem,
+    isActivePaymentMethod,
+    setIsActivePaymentMethod,
+  }}>
     {children}
   </CartContext.Provider>
 }
