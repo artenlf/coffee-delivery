@@ -1,5 +1,6 @@
 import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
+import { AddressContextProvider } from "./contexts/AddressContext";
 import { CartContextProvider } from "./contexts/CartContext";
 
 import { Router } from "./Router";
@@ -12,9 +13,11 @@ export function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <BrowserRouter>
-        <CartContextProvider>
-          <Router />
-        </CartContextProvider>
+        <AddressContextProvider>
+          <CartContextProvider>
+            <Router />
+          </CartContextProvider>
+        </AddressContextProvider>
       </BrowserRouter>
       <GlobalStyle />
     </ThemeProvider>

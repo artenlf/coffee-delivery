@@ -1,8 +1,9 @@
-import cep from 'cep-promise';
+import cep from "cep-promise";
 import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money, ShoppingCart } from "phosphor-react";
 import { ChangeEvent, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { SelectedProduct } from "../../components/SelectedProduct";
+import { addressDefaultValues, AddressFormProps, useAddress } from '../../contexts/AddressContext';
 import { useCart } from "../../contexts/CartContext";
 import products from "../../db/products.json";
 import {
@@ -13,34 +14,20 @@ import {
   InputContainer, PaymentContainer, PaymentMethodSelect, SubmitButton
 } from "./styles";
 
-interface IFormInput {
-  postalCode: string;
-  street: string;
-  number: string;
-  complement: string;
-  neighborhood: string;
-  city: string;
-  state: string;
-
-}
-
 export function Checkout() {
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setValue } = useForm<AddressFormProps>
+      ({
+        defaultValues: addressDefaultValues
+      })
 
   const {
     cartItems
   } = useCart()
-
-  const { register, handleSubmit, formState: { errors }, setValue } = useForm<IFormInput>({
-    defaultValues: {
-      postalCode: "",
-      street: "",
-      number: "",
-      complement: "",
-      neighborhood: "",
-      city: "",
-      state: "",
-    }
-  });
 
   const itemsTotalPrice = (cartItems.reduce((total, cartItem) => {
     const item = products.find(item => item.id === cartItem.id)
@@ -69,6 +56,8 @@ export function Checkout() {
 
   const [isActivePaymentMethod, setIsActivePaymentMethod] = useState<string | undefined>()
 
+  const { onSubmit } = useAddress();
+
   function postalCodeAutoCompleteAddress(event: ChangeEvent<HTMLInputElement>) {
     const postalCode = event.target.value.replace(/\D/g, "");
     cep(postalCode).then(data => {
@@ -81,13 +70,8 @@ export function Checkout() {
 
   return (
 
-
-
     <InfoContainer>
-
-      <form onSubmit={handleSubmit((data) => {
-        console.log(data)
-      })}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <h2>Complete o seu pedido</h2>
         <h2>Cafés selecionados</h2>
         <div>
@@ -101,12 +85,14 @@ export function Checkout() {
                 <p>Informe o endereço onde deseja receber seu pedido</p>
               </div>
             </div>
+
+
             <fieldset>
 
               <InputContainer
                 {...register("postalCode",
                   {
-                    //   required: "Este campo é obrigatório.",
+                    required: "O campo CEP é obrigatório.",
                     pattern:
                     {
                       value: /^[0-9]{5}[0-9]{3}$/,
@@ -134,19 +120,16 @@ export function Checkout() {
 
               />
 
-              {/* <ErrorContainer>{errors.street?.message}</ErrorContainer> */}
 
               <InputContainer
                 {...register("number",
-                  // { required: "Este campo é obrigatório." }
+                  { required: "O campo número é obrigatório." }
                 )
                 }
                 inputSize="default"
                 placeholder="Número"
 
               />
-
-              {/* <ErrorContainer>{errors.number?.message}</ErrorContainer> */}
 
 
               <InputContainer
@@ -189,6 +172,7 @@ export function Checkout() {
               />
 
             </fieldset>
+
           </FieldSetContainer >
           <PaymentContainer>
             <div className="title__container">
