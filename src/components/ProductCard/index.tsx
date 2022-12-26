@@ -6,7 +6,7 @@ import { CardContainer } from "./styles";
 
 interface ProductProps {
   id: number;
-  picture: string;
+  picture: any;
   label: string[];
   name: string;
   description: string;
