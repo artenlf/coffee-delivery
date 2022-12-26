@@ -177,6 +177,10 @@ export const CartSummaryContainer = styled(CardContainer)`
       color: ${(props) => props.theme['yellow-700']};
     }
   }
+
+  .link{
+    text-decoration: none;
+  }
 `;
 
 export const SubmitButton = styled.button`

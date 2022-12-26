@@ -1,5 +1,5 @@
 import { Bank, CreditCard, Money } from 'phosphor-react';
-import { createContext, ReactNode, useContext, useState } from 'react';
+import { createContext, ReactNode, useContext } from 'react';
 import products from "../db/products.json";
 import { useLocalStorage } from '../hooks/useLocalStorage';
 
@@ -11,7 +11,6 @@ interface CartContextProviderProps {
 interface avaiblePaymentMethodsProps {
   method: string;
   icon: any;
-  name: string;
 }
 
 interface CartContextProps {
@@ -55,23 +54,20 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
 
   const avaiblePaymentMethods = [
     {
-      method: "credit",
+      method: "Cartão de crédito",
       icon: <CreditCard size={16} className="card-icon" />,
-      name: "Cartão de crédito",
     },
     {
-      method: "debit",
+      method: "Cartão de débito",
       icon: <Bank size={16} className="bank-icon" />,
-      name: "Cartão de débito"
     },
     {
-      method: "cash",
+      method: "Dinheiro",
       icon: <Money size={16} className="cash-icon" />,
-      name: "Dinheiro"
     }
   ]
 
-  const [isActivePaymentMethod, setIsActivePaymentMethod] = useState<string | undefined>()
+  const [isActivePaymentMethod, setIsActivePaymentMethod] = useLocalStorage<string | undefined>("active-payment-method", "")
 
   function itemQuantity(id: number) {
     return cartItems.find(item => item.id === id)?.quantity || 0
