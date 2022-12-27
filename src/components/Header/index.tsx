@@ -19,7 +19,9 @@ export function Header() {
         <NavLink to="/checkout" title="location">
           <div className="map">
             <MapPin size={22} weight="fill" className="map-icon" />
-            {
+            {addressFields.city === "" && addressFields.state === "" ?
+              <p>Cidade/UF</p>
+              :
               <p>{`${addressFields.city}/${addressFields.state}`}</p>
             }
           </div>
