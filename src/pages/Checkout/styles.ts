@@ -19,7 +19,7 @@ export const InfoContainer = styled.main`
 export const FieldSetContainer = styled.div`
   background: ${(props) => props.theme['gray-100']};
   border-radius: 6px;
-  height: 23.25rem;
+  height: max-content;
   margin-bottom: 0.75rem;
   padding: 2.5rem;
   width: 40rem;
@@ -67,7 +67,7 @@ export const InputContainer = styled.input<InputProps>`
   background: ${(props) => props.theme['gray-200']};
   border: 1px solid ${(props) => props.theme['gray-300']};
   border-radius: 4px;
-  height: 2.625rem;
+  height: max-content;
   padding: 0.75rem;
   width: ${(props) => [INPUT_SIZE[props.inputSize]]};
 
@@ -90,7 +90,8 @@ export const ErrorContainer = styled.p`
 `;
 
 export const PaymentContainer = styled(FieldSetContainer)`
-  height: 13rem;
+    height: 13rem;
+
 
   .dollar-icon {
     color: ${(props) => props.theme['purple-500']};
@@ -142,7 +143,7 @@ export const PaymentMethodSelect = styled.button<IPaymentMethodSelect>`
 `;
 
 export const CartSummaryContainer = styled(CardContainer)`
-  height: 31.125rem;
+  height: max-content;
   padding: 2.5rem;
   width: 28rem;
 
