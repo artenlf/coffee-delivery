@@ -4,7 +4,7 @@ import { ChangeEvent } from 'react';
 import { useForm } from "react-hook-form";
 import { NavLink } from "react-router-dom";
 import { SelectedProduct } from "../../components/SelectedProduct";
-import { addressDefaultValues, AddressFormProps, useAddress } from '../../contexts/AddressContext';
+import { AddressFormProps, useAddress } from '../../contexts/AddressContext';
 import { useCart } from "../../contexts/CartContext";
 import {
   CartSummaryContainer,
@@ -16,25 +16,26 @@ import {
 
 export function Checkout() {
 
+  const { onSubmit, addressFields } = useAddress();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     setValue } = useForm<AddressFormProps>
       ({
-        defaultValues: addressDefaultValues
+        defaultValues: addressFields
       })
 
   const {
     cartItems,
+    cartQuantity,
     itemsTotalPrice,
     deliveryFees,
     avaiblePaymentMethods,
     isActivePaymentMethod,
     setIsActivePaymentMethod
   } = useCart()
-
-  const { onSubmit } = useAddress();
 
   function postalCodeAutoCompleteAddress(event: ChangeEvent<HTMLInputElement>) {
     const postalCode = event.target.value.replace(/\D/g, "");
@@ -178,7 +179,7 @@ export function Checkout() {
         </div>
 
         <CartSummaryContainer>
-          {cartItems.length < 1 ?
+          {cartQuantity < 1 ?
             <div className="empty-cart">
               <ShoppingCart size={60} weight="fill" className="cart-icon" />
               O seu carrinho está vázio.<br /> Adicione um café!
@@ -204,11 +205,25 @@ export function Checkout() {
               <span>R$ {(itemsTotalPrice + deliveryFees).toFixed(2).replace(".", ",")}</span>
             </div>
           </div>
-          <NavLink to="/success" title="success" className="link">
+          {cartQuantity < 1 ?
             <SubmitButton type="submit">
+
+
               Confirmar pedido
+
             </SubmitButton>
-          </NavLink>
+            :
+            <NavLink to="/success" title="success" className="link">
+              <SubmitButton type="submit">
+
+
+                Confirmar pedido
+
+              </SubmitButton>
+            </NavLink>
+          }
+
+
 
         </CartSummaryContainer>
 

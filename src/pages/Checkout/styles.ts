@@ -179,7 +179,10 @@ export const CartSummaryContainer = styled(CardContainer)`
   }
 
   .link{
+    color: ${(props) => props.theme['gray-100']};
     text-decoration: none;
+    width: 100%;
+
   }
 `;
 
