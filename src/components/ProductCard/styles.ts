@@ -11,6 +11,10 @@ export const CardContainer = styled.div`
   text-align: center;
   width: 16rem;
 
+  @media (max-width: 1400px) {
+    width: 13.3rem;
+  }
+
   img {
     height: 7.5rem;
     width: 7.5rem;
@@ -41,6 +45,10 @@ export const CardContainer = styled.div`
     font-family: 'Baloo 2', cursive;
     font-weight: 700;
     font-size: 1.25rem;
+
+    @media (max-width: 1400px) {
+      font-size: 1.1rem;
+    }
   }
 
   .description {
@@ -48,6 +56,12 @@ export const CardContainer = styled.div`
     font-size: 0.875rem;
     margin-bottom: 1.5rem;
     padding: 0 1.25rem;
+
+    @media (max-width: 1400px) {
+      font-size: 0.75rem;
+      padding: 0 0.75rem;
+      margin-bottom: 1rem;
+    }
   }
 
   .shop__container {
@@ -65,6 +79,17 @@ export const CardContainer = styled.div`
       font-size: 1.5rem;
       font-weight: 800;
       margin-left: 0.25rem;
+      }
+      @media (max-width: 1400px) {
+        gap: 0.25rem;
+
+        p {
+          margin-right: 0;
+        }
+
+        .price{
+          font-size: 1.25rem;
+        }
     }
 
     .cart {
@@ -78,6 +103,10 @@ export const CardContainer = styled.div`
 
       :hover {
         background: ${(props) => props.theme['purple-500']};
+      }
+
+      @media (max-width: 1400px) {
+        
       }
     }
   }

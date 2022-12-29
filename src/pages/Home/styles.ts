@@ -8,7 +8,7 @@ export const IntroContainer = styled.section`
 
   .title__container {
     grid-area: 1 / 1 / 2 / 2;
-    width: 36.75rem;
+    max-width: 36.75rem;
   }
 
   img {
@@ -20,12 +20,15 @@ export const IntroContainer = styled.section`
   }
 
   @media (max-width: 1400px) {
-    gap: 3rem;
 
+    .title__container {
+      max-height: 10rem;
+  }
+    
     img {
       margin: 0 auto;
-      max-height: 12.5rem;
-      max-width: 17.5rem;
+      max-width: 20rem;
+      place-self: center;
     }
   }
 
@@ -34,7 +37,6 @@ export const IntroContainer = styled.section`
 
     img {
       margin: 0 auto;
-      max-height: 11.25rem;
       max-width: 15rem;
     }
   }
@@ -47,7 +49,7 @@ export const IntroTitle = styled.h1`
   font-weight: 800;
 
   @media (max-width: 1400px) {
-    font-size: 1.9rem;
+    font-size: 1.75rem;
   }
 
   @media (max-width: 767px) {
@@ -63,7 +65,7 @@ export const IntroSubTitle = styled.h2`
   margin: 1rem auto 4.125rem auto;
 
   @media (max-width: 1400px) {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 
   @media (max-width: 767px) {
@@ -114,6 +116,14 @@ export const IntroItemsContainer = styled.div`
   .coffee__container {
     background: ${(props) => props.theme['purple-500']};
   }
+
+  @media (max-width: 1400px) {
+    font-size: 0.875rem;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1rem;
+
+  }
+
 `;
 
 export const ProductsContainer = styled.section`
@@ -134,5 +144,14 @@ export const ProductsContainer = styled.section`
     font-size: 2rem;
     font-weight: 800;
     margin-bottom: 0.875rem;
+
+      @media (max-width: 1400px) {
+        margin-top: 2rem;
+        font-size: 1.75rem;
+    }
+
+      @media (max-width: 767px) {
+      font-size: 1.5rem;
+    }
   }
 `;
