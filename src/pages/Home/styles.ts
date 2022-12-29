@@ -1,16 +1,42 @@
 import styled from 'styled-components';
 
 export const IntroContainer = styled.section`
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  gap: 0 3rem;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
 
   .title__container {
+    grid-area: 1 / 1 / 2 / 2;
     width: 36.75rem;
   }
 
   img {
+    display: flex;
+  grid-area: 1 / 2 / 3 / 3;
+
     max-height: 22.5rem;
     max-width: 29.75rem;
+  }
+
+  @media (max-width: 1400px) {
+    gap: 3rem;
+
+    img {
+      margin: 0 auto;
+      max-height: 12.5rem;
+      max-width: 17.5rem;
+    }
+  }
+
+  @media (max-width: 767px) {
+    flex-wrap: wrap;
+
+    img {
+      margin: 0 auto;
+      max-height: 11.25rem;
+      max-width: 15rem;
+    }
   }
 `;
 
@@ -19,6 +45,14 @@ export const IntroTitle = styled.h1`
   font-family: 'Baloo 2', cursive;
   font-size: 3rem;
   font-weight: 800;
+
+  @media (max-width: 1400px) {
+    font-size: 1.9rem;
+  }
+
+  @media (max-width: 767px) {
+    font-size: 1.5rem;
+  }
 `;
 
 export const IntroSubTitle = styled.h2`
@@ -27,12 +61,24 @@ export const IntroSubTitle = styled.h2`
   font-size: 1.25rem;
   font-weight: 400;
   margin: 1rem auto 4.125rem auto;
+
+  @media (max-width: 1400px) {
+    font-size: 1.2rem;
+  }
+
+  @media (max-width: 767px) {
+    font-size: 1rem;
+  }
 `;
 
 export const IntroItemsContainer = styled.div`
   display: grid;
   gap: 1.25rem 0;
   grid-template-columns: repeat(2, 1fr);
+  grid-area: 2 / 1 / 3 / 2 ;
+  max-height: 5.25rem;
+  max-width: 36.7rem;
+
 
   span {
     align-items: center;
