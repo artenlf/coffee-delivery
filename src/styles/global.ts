@@ -28,5 +28,9 @@ export const GlobalStyle = createGlobalStyle`
 
     main {
         padding: 5.75rem 10rem;
+
+    @media (max-width: 1400px) {
+        padding: 2rem;
+  }
     }
 `;

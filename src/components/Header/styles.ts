@@ -65,4 +65,10 @@ export const HeaderContainer = styled.header`
     margin-left: -1.5rem;
     width: 1.25rem;
   }
+
+  @media (max-width: 1400px) {
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 2rem;
+  }
 `;
