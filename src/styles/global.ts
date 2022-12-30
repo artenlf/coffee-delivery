@@ -18,6 +18,9 @@ export const GlobalStyle = createGlobalStyle`
             background: ${(props) => props.theme['bg-color']};
             color: ${(props) => props.theme['gray-700']};
             -webkit-font-smoothing: antialiased;
+            @media (max-width: 1439px) {
+                padding: 0 2rem;
+            }
     }
 
     body, input, textarea, button {
@@ -29,8 +32,8 @@ export const GlobalStyle = createGlobalStyle`
     main {
         padding: 5.75rem 10rem;
 
-    @media (max-width: 1439px) {
-        padding: 2rem;
-  }
+        @media (max-width: 1439px) {
+            padding: 2rem;
+        }
     }
 `;

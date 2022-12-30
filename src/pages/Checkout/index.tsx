@@ -51,9 +51,8 @@ export function Checkout() {
 
     <InfoContainer>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <h2>Complete o seu pedido</h2>
-        <h2>Cafés selecionados</h2>
         <div>
+          <h2>Complete o seu pedido</h2>
 
 
           <FieldSetContainer>
@@ -177,55 +176,59 @@ export function Checkout() {
             </div>
           </PaymentContainer>
         </div>
+        <div>
+          <h2>Cafés selecionados</h2>
 
-        <CartSummaryContainer>
-          {cartQuantity < 1 ?
-            <div className="empty-cart">
-              <ShoppingCart size={60} weight="fill" className="cart-icon" />
-              O seu carrinho está vázio.<br /> Adicione um café!
+          <CartSummaryContainer>
+
+            {cartQuantity < 1 ?
+              <div className="empty-cart">
+                <ShoppingCart size={60} weight="fill" className="cart-icon" />
+                O seu carrinho está vázio.<br /> Adicione um café!
+              </div>
+
+              :
+
+              cartItems.map(item => (
+                <SelectedProduct key={item.id} {...item} />
+              ))}
+
+            <div className="summary">
+              <div className="summary__line">
+                <p>Total de itens</p>
+                <p>R$ {(itemsTotalPrice).toFixed(2).replace(".", ",")}</p>
+              </div>
+              <div className="summary__line">
+                <p>Entrega</p>
+                <p>R$ {(deliveryFees).toFixed(2).replace(".", ",")}</p>
+              </div>
+              <div className="summary__line">
+                <span>Total</span>
+                <span>R$ {(itemsTotalPrice + deliveryFees).toFixed(2).replace(".", ",")}</span>
+              </div>
             </div>
-
-            :
-
-            cartItems.map(item => (
-              <SelectedProduct key={item.id} {...item} />
-            ))}
-
-          <div className="summary">
-            <div className="summary__line">
-              <p>Total de itens</p>
-              <p>R$ {(itemsTotalPrice).toFixed(2).replace(".", ",")}</p>
-            </div>
-            <div className="summary__line">
-              <p>Entrega</p>
-              <p>R$ {(deliveryFees).toFixed(2).replace(".", ",")}</p>
-            </div>
-            <div className="summary__line">
-              <span>Total</span>
-              <span>R$ {(itemsTotalPrice + deliveryFees).toFixed(2).replace(".", ",")}</span>
-            </div>
-          </div>
-          {cartQuantity < 1 ?
-            <SubmitButton type="submit">
-
-
-              Confirmar pedido
-
-            </SubmitButton>
-            :
-            <NavLink to="/success" title="success" className="link">
+            {cartQuantity < 1 ?
               <SubmitButton type="submit">
 
 
                 Confirmar pedido
 
               </SubmitButton>
-            </NavLink>
-          }
+              :
+              <NavLink to="/success" title="success" className="link">
+                <SubmitButton type="submit">
+
+
+                  Confirmar pedido
+
+                </SubmitButton>
+              </NavLink>
+            }
 
 
 
-        </CartSummaryContainer>
+          </CartSummaryContainer>
+        </div>
 
       </form >
     </InfoContainer >

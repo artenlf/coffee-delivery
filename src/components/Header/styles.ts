@@ -68,7 +68,9 @@ export const HeaderContainer = styled.header`
 
   @media (max-width: 1439px) {
     margin: 0 auto;
-    width: 100%;
-    padding: 0 2rem;
+    padding: 2rem;
+
+    /* width: 100%; */
+    /* padding: 0 2rem; */
   }
 `;

@@ -4,8 +4,8 @@ import { CardContainer } from '../../components/ProductCard/styles';
 export const InfoContainer = styled.main`
   form {
     display: grid;
-    grid-template-columns: 1fr 2fr;
-    column-gap: 2rem;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 2rem;    
   }
 
   h2 {
@@ -14,6 +14,12 @@ export const InfoContainer = styled.main`
     font-weight: 700;
     margin-bottom: 1rem;
   }
+
+  @media (max-width: 1283px) {
+      form {
+        grid-template-columns: repeat(1, 1fr);
+      }
+    }
 `;
 
 export const FieldSetContainer = styled.div`
@@ -49,6 +55,10 @@ export const FieldSetContainer = styled.div`
     gap: 1rem 0.75rem;
     padding: 0.75rem;
   }
+
+  /* @media (max-width: 767px) {
+    width: 22.5rem;
+  } */
 `;
 
 const INPUT_SIZE = {
@@ -81,6 +91,10 @@ export const InputContainer = styled.input<InputProps>`
     color: ${(props) => props.theme['gray-600']};
     font-size: 0.875rem;
   }
+  
+  /* @media (max-width: 767px) {
+    width: 21.5rem;
+  } */
 `;
 
 export const ErrorContainer = styled.p`
@@ -183,8 +197,15 @@ export const CartSummaryContainer = styled(CardContainer)`
     color: ${(props) => props.theme['gray-100']};
     text-decoration: none;
     width: 100%;
-
   }
+
+  @media (max-width: 1284px) {
+    width: 40rem;
+  }
+
+  /* @media (max-width: 767px) {
+    width: 22.5rem;
+  } */
 `;
 
 export const SubmitButton = styled.button`
