@@ -27,6 +27,19 @@ export const SuccessContainer = styled.main`
       height: 18.3125rem;
       width: 30.75rem;
     }
+
+    @media (max-width: 1023px) {
+      align-items: center;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    @media (max-width: 549px) {
+      img {
+        height: 90%;
+        width: 90%;
+      }
+    }
   }
 
   .checkout__container {
@@ -47,7 +60,7 @@ export const SuccessContainer = styled.main`
     flex-direction: column;
     gap: 2rem;
     justify-content: center;
-    max-width: 33%;
+    max-width: 32.875rem;
     padding: 2.5rem;
     width: 100%;
 
@@ -84,6 +97,19 @@ export const SuccessContainer = styled.main`
       .currency__container {
         background: ${(props) => props.theme['yellow-700']};
       }
+    }
+  }
+
+  @media (max-width: 1023px) {
+    align-items: center;
+  }
+  @media (max-width: 549px){
+    h2 {
+      font-size: 1.5rem;
+    } 
+      
+    h3 {
+      font-size: 0.875rem;
     }
   }
 `;
