@@ -21,6 +21,10 @@ export const GlobalStyle = createGlobalStyle`
             @media (max-width: 1439px) {
                 padding: 0 2rem;
             }
+
+            @media (max-width: 767px) {
+                padding: 0;
+            }
     }
 
     body, input, textarea, button {
@@ -34,6 +38,10 @@ export const GlobalStyle = createGlobalStyle`
 
         @media (max-width: 1439px) {
             padding: 2rem;
+        }
+
+        @media (max-width: 767px) {
+            padding: 1rem;
         }
     }
 `;

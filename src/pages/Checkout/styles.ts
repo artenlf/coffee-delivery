@@ -56,9 +56,18 @@ export const FieldSetContainer = styled.div`
     padding: 0.75rem;
   }
 
-  /* @media (max-width: 767px) {
-    width: 22.5rem;
-  } */
+  @media (max-width: 767px) {
+    padding: 2rem 1rem;
+    width: calc(100vw - 2rem);
+
+    fieldset {
+      align-items: center;
+      flex-direction: column;
+      padding: 0;
+    }
+  }
+
+  
 `;
 
 const INPUT_SIZE = {
@@ -92,9 +101,10 @@ export const InputContainer = styled.input<InputProps>`
     font-size: 0.875rem;
   }
   
-  /* @media (max-width: 767px) {
-    width: 21.5rem;
-  } */
+  @media (max-width: 767px) {
+    width: calc(100vw - 4rem);
+
+  }
 `;
 
 export const ErrorContainer = styled.p`
@@ -114,6 +124,15 @@ export const PaymentContainer = styled(FieldSetContainer)`
   .method__wrapper {
     display: flex;
     gap: 0.75rem;
+  }
+
+  @media(max-width: 767px) {
+    height: max-content;
+
+    .method__wrapper{
+      align-items: center;
+      flex-direction: column;
+    }
   }
 `;
 
@@ -200,12 +219,14 @@ export const CartSummaryContainer = styled(CardContainer)`
   }
 
   @media (max-width: 1284px) {
+    padding: 1.25rem;
     width: 40rem;
   }
 
-  /* @media (max-width: 767px) {
-    width: 22.5rem;
-  } */
+  @media (max-width: 767px) {
+    width: calc(100vw - 2rem);
+
+  }
 `;
 
 export const SubmitButton = styled.button`
