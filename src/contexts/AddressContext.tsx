@@ -1,5 +1,6 @@
 import { createContext, ReactNode, useContext } from 'react';
 import { SubmitHandler } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 
 export interface AddressFormProps {
@@ -42,7 +43,12 @@ export function AddressContextProvider({ children }: AddressContextProviderProps
 
   const [addressFields, setAddressFields] = useLocalStorage<AddressFormProps>("address-fields", addressDefaultValues)
 
-  const onSubmit: SubmitHandler<AddressFormProps> = data => setAddressFields(data);
+  const navigate = useNavigate();
+
+  const onSubmit: SubmitHandler<AddressFormProps> = async (data) => {
+    setAddressFields(data);
+    navigate('/success');
+  };
 
   return <AddressContext.Provider value={{ addressFields, onSubmit }}>
     {children}

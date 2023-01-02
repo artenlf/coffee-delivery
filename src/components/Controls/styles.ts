@@ -12,6 +12,7 @@ export const ControlsContainer = styled.div`
     border-radius: 6px;
     background: ${(props) => props.theme['gray-400']};
     border: none;
+    cursor: pointer;
     display: flex;
     padding: 0.5rem;
   }

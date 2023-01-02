@@ -51,6 +51,7 @@ export const SelectedProductContainer = styled.div`
       border-radius: 6px;
       background: ${(props) => props.theme['gray-400']};
       border: none;
+      cursor: pointer;
       display: flex;
       font-size: 0.75rem;
       gap: 0.25rem;

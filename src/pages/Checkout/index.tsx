@@ -2,7 +2,7 @@ import cep from "cep-promise";
 import { CurrencyDollar, MapPinLine, ShoppingCart } from "phosphor-react";
 import { ChangeEvent } from 'react';
 import { useForm } from "react-hook-form";
-import { NavLink } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import { SelectedProduct } from "../../components/SelectedProduct";
 import { AddressFormProps, useAddress } from '../../contexts/AddressContext';
 import { useCart } from "../../contexts/CartContext";
@@ -46,6 +46,8 @@ export function Checkout() {
       setValue("state", data.state);
     }).catch()
   }
+
+  const navigate = useNavigate();
 
   return (
 
@@ -207,26 +209,12 @@ export function Checkout() {
                 <span>R$ {(itemsTotalPrice + deliveryFees).toFixed(2).replace(".", ",")}</span>
               </div>
             </div>
-            {cartQuantity < 1 ?
-              <SubmitButton type="submit">
+            <SubmitButton type="submit" disabled={cartQuantity < 1}>
 
 
-                Confirmar pedido
+              Confirmar pedido
 
-              </SubmitButton>
-              :
-              <NavLink to="/success" title="success" className="link">
-                <SubmitButton type="submit">
-
-
-                  Confirmar pedido
-
-                </SubmitButton>
-              </NavLink>
-            }
-
-
-
+            </SubmitButton>
           </CartSummaryContainer>
         </div>
 

@@ -79,6 +79,7 @@ export const CardContainer = styled.div`
 
       :hover {
         background: ${(props) => props.theme['purple-500']};
+        cursor: pointer;
       }
   }
 `;
