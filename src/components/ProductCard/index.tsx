@@ -45,10 +45,17 @@ export function ProductCard({ id, picture, label, name, description, price }: Pr
             {(price).toFixed(2).replace(".", ",")}
           </span>
         </p>
-        <Controls id={id} quantity={quantity} />
-        <button className="cart" onClick={() => increaseQuantity(id)}>
-          <ShoppingCartSimple size={22} weight="fill" />
-        </button>
+        {
+          quantity > 0 ?
+            <Controls id={id} quantity={quantity} />
+            : <button
+              className="cart"
+              onClick={() => increaseQuantity(id)}
+            >
+              <ShoppingCartSimple size={22} weight="fill" />
+            </button>
+        }
+
       </div>
 
     </CardContainer >

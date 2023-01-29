@@ -6,6 +6,8 @@ export const ControlsContainer = styled.div`
   background: ${(props) => props.theme['gray-400']};
   display: flex;
   gap: 0.25rem;
+  min-height: 2.375rem;
+  min-width: 5rem;
 
   button {
     align-items: center;

@@ -75,7 +75,9 @@ export const CardContainer = styled.div`
       border-radius: 6px;
       color: ${(props) => props.theme['bg-color']};
       display: flex;
+      justify-content: center;
       padding: 0.5rem;
+      min-width: 5rem;
 
       :hover {
         background: ${(props) => props.theme['purple-500']};

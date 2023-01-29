@@ -164,14 +164,14 @@ export function Checkout() {
             </div>
             <div className="method__wrapper">
               {
-                avaiblePaymentMethods.map((paymentMethod) => (
+                avaiblePaymentMethods.map(({ method, icon }) => (
                   <PaymentMethodSelect type="button"
-                    key={paymentMethod.method}
-                    isActive={isActivePaymentMethod === paymentMethod.method}
-                    onClick={() => setIsActivePaymentMethod(paymentMethod.method)}
+                    key={method}
+                    isActive={isActivePaymentMethod === method}
+                    onClick={() => setIsActivePaymentMethod(method)}
                   >
-                    {paymentMethod.icon}
-                    {paymentMethod.method}
+                    {icon}
+                    {method}
                   </PaymentMethodSelect>
                 ))}
 
@@ -209,12 +209,11 @@ export function Checkout() {
                 <span>R$ {(itemsTotalPrice + deliveryFees).toFixed(2).replace(".", ",")}</span>
               </div>
             </div>
+
             <SubmitButton type="submit" disabled={cartQuantity < 1}>
-
-
               Confirmar pedido
-
             </SubmitButton>
+
           </CartSummaryContainer>
         </div>
 
